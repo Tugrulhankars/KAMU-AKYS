@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "react-toastify": "^11.0.5"
+  },
+  "scripts": {
+    "preinstall": "node preinstall.js"
+  }
+}
