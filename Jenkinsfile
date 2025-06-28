@@ -24,7 +24,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 dir('Kamu-AKYS/kamu-akys') {
-                    bat "docker build -t %IMAGE_NAME%:%IMAGE_TAG% ."
+                    bat "docker build -t Dockerfile $DOCKER_HUB_REPO:$IMAGE_TAG ."
                 }
             }
         }
