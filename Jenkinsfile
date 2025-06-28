@@ -1,7 +1,7 @@
 pipeline {
     agent any 
     environment {
-        IMAGE_NAME = "kamu-akys"
+        IMAGE_NAME = "kamu-akys-web-sitesi"
         IMAGE_TAG = "latest"
         DOCKER_HUB_REPO = "tugrulhan/kamu-akys-web-sitesi"
         DOCKER_HUB_CREDENTIALS = "docker-hub-credentials"
