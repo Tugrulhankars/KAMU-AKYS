@@ -29,16 +29,11 @@ pipeline {
             }
         }
 
-        stage('Docker Login & Push') {
+         stage('Docker Login & Push') {
             steps {
                 script {
-                    def fullImageName = "${DOCKER_HUB_REPO}:${IMAGE_TAG}"
-
-                    // push edebilmek için önce imaj ismini uygun şekilde tag'liyoruz
-                    bat "docker tag %IMAGE_NAME%:%IMAGE_TAG% ${fullImageName}"
-
-                    docker.withRegistry('https://index.docker.io/v1/', DOCKER_HUB_CREDENTIALS) {
-                        bat "docker push ${fullImageName}"
+                    docker.withRegistry('https://index.docker.io/v1/', "$DOCKER_HUB_CREDENTIALS") {
+                        docker.image("$DOCKER_HUB_REPO:$IMAGE_TAG").push()
                     }
                 }
             }
