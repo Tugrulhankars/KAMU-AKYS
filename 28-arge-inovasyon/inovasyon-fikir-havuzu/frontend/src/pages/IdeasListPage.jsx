@@ -3,6 +3,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchIdeasStart, fetchIdeasSuccess, fetchIdeasFailure } from '../redux/slices/ideaSlice';
 import { getIdeas } from '../services/ideaService';
+import { getCategories } from '../services/categoryService';
 import IdeaCard from '../components/IdeaCard';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -13,6 +14,8 @@ const IdeasListPage = () => {
   const [inputValue, setInputValue] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('newest'); // 'newest', 'votes'
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   useEffect(() => {
     const fetchIdeas = async () => {
@@ -25,6 +28,16 @@ const IdeasListPage = () => {
       }
     };
     fetchIdeas();
+    // Kategorileri çek
+    const fetchCategories = async () => {
+      try {
+        const data = await getCategories();
+        setCategories(data);
+      } catch {
+        setCategories([]);
+      }
+    };
+    fetchCategories();
   }, [dispatch]);
 
   const handleSearch = () => {
@@ -33,8 +46,9 @@ const IdeasListPage = () => {
 
   const filteredAndSortedIdeas = useMemo(() => {
     let filtered = ideas.filter(idea =>
-      idea.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      idea.description.toLowerCase().includes(searchTerm.toLowerCase())
+      (idea.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        idea.description.toLowerCase().includes(searchTerm.toLowerCase())) &&
+      (selectedCategory === '' || idea.categoryName === selectedCategory)
     );
 
     if (sortBy === 'newest') {
@@ -44,7 +58,7 @@ const IdeasListPage = () => {
     }
 
     return filtered;
-  }, [ideas, searchTerm, sortBy]);
+  }, [ideas, searchTerm, sortBy, selectedCategory]);
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
@@ -81,6 +95,18 @@ const IdeasListPage = () => {
             </button>
           </div>
           <div className="flex items-center gap-2">
+            <label htmlFor="category" className="text-sm font-medium text-gray-700">Kategori:</label>
+            <select
+              id="category"
+              className="border-gray-300 rounded-full shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm py-2 pl-3 pr-8"
+              value={selectedCategory}
+              onChange={e => setSelectedCategory(e.target.value)}
+            >
+              <option value="">Tümü</option>
+              {categories.map((cat) => (
+                <option key={cat.id || cat.categoryName} value={cat.categoryName}>{cat.categoryName}</option>
+              ))}
+            </select>
             <label htmlFor="sort" className="text-sm font-medium text-gray-700">Sırala:</label>
             <select
               id="sort"
