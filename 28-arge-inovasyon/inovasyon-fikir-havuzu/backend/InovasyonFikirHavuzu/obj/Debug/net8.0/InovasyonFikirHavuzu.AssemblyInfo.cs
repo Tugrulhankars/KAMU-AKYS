@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("InovasyonFikirHavuzu")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9bf49bf9b9528094899a2bd2ef41079785dabfc3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c88e5f13f3993b4717f22f17aa4c9f22b37df64f")]
 [assembly: System.Reflection.AssemblyProductAttribute("InovasyonFikirHavuzu")]
 [assembly: System.Reflection.AssemblyTitleAttribute("InovasyonFikirHavuzu")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

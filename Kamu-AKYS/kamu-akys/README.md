@@ -1,12 +1,24 @@
-# React + Vite
+# KAMU AKYS Web Sitesi
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bu depo, **KAMU AKYS (Kamu Açık Kaynak Yazılım Sistemi)** projesinin resmi web sitesinin kaynak kodlarını içerir.
 
-Currently, two official plugins are available:
+## 📌 Proje Hakkında
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**KAMU AKYS**, kamu kurumlarında açık kaynak yazılımların kullanımını yaygınlaştırmak, geliştiriciler arasında iş birliğini artırmak ve yazılımda dışa bağımlılığı azaltmak amacıyla oluşturulmuş bir sistemdir.
 
-## Expanding the ESLint configuration
+Bu web sitesi, KAMU AKYS'nin tanıtımını yapmak, açık kaynak yazılımın kamudaki rolünü anlatmak ve katılım yollarını göstermek amacıyla hazırlanmıştır.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🎯 Amaçlar
+
+- Kamu kurumlarını açık kaynak çözümler konusunda bilgilendirmek  
+- Açık kaynak katkı süreçlerini tanıtmak  
+- Sisteme nasıl dahil olunabileceğini ve katkı sunulabileceğini göstermek  
+- KAMU AKYS platformu hakkında güncel duyurular ve belgeler paylaşmak  
+
+## 🚀 Kurulum ve Çalıştırma
+
+> Not: Bu bölüm, kullandığınız teknolojiye göre özelleştirilebilir. Aşağıda örnek bir `React` projesi varsayılmıştır.
+
+1. Bu repoyu klonlayın:
+   ```bash
+   git clone https://github.com/kullaniciadi/kamu-akys-web-sitesi.git

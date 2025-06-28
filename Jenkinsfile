@@ -1,0 +1,42 @@
+pipeline {
+    agent any 
+    environment {
+        IMAGE_NAME="kamu-akys"
+        IMAGE_TAG="latest"
+        DOCKER_HUB_REPO="tugrulhan/kamu-akys-web-sitesi"
+        DOCKER_HUB_CREDENTIALS="docker-hub-credentials"
+    }
+    stages {
+        stage('Checkout Branch'){
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build Project'){
+            steps {
+                dir('Kamu-AKYS/kamu-akys'){
+                   bat 'npm install'
+                }
+            }
+        }
+
+        stage('Docker Build'){
+            steps {
+                dir('Kamu-AKYS/kamu-akys'){
+                    bat 'docker build -t $IMAGE_NAME:$IMAGE_TAG .'
+                }
+            }
+        }
+
+        stage('Docker Login & Push'){
+            steps{
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/',"$DOCKER_HUB_cREDENTIALS"){
+                         docker.image("$IMAGE_NAME:$IMAGE_TAG").push()
+                    }
+                }
+            }
+        }
+    }
+}
