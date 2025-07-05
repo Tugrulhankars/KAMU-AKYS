@@ -1,0 +1,12 @@
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Domain\bin\Debug\net8.0\DemirbasAPI.Domain.deps.json
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Domain\bin\Debug\net8.0\DemirbasAPI.Domain.dll
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Domain\bin\Debug\net8.0\DemirbasAPI.Domain.pdb
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Domain\obj\Debug\net8.0\DemirbasAPI.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Domain\obj\Debug\net8.0\DemirbasAPI.Domain.AssemblyInfoInputs.cache
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Domain\obj\Debug\net8.0\DemirbasAPI.Domain.AssemblyInfo.cs
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Domain\obj\Debug\net8.0\DemirbasAPI.Domain.csproj.CoreCompileInputs.cache
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Domain\obj\Debug\net8.0\DemirbasAPI.Domain.sourcelink.json
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Domain\obj\Debug\net8.0\DemirbasAPI.Domain.dll
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Domain\obj\Debug\net8.0\refint\DemirbasAPI.Domain.dll
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Domain\obj\Debug\net8.0\DemirbasAPI.Domain.pdb
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Domain\obj\Debug\net8.0\ref\DemirbasAPI.Domain.dll

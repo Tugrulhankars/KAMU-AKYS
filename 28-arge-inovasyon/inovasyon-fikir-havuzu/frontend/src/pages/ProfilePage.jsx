@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import DashboardLayout from '../layouts/DashboardLayout';
 import { toast } from 'react-toastify';
 import { UserIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import { getReports, downloadReport } from '../services/reportService';
 
 const ProfilePage = () => {
   const { user } = useSelector((state) => state.auth);
@@ -20,6 +21,37 @@ const ProfilePage = () => {
     newPassword: '',
     confirmPassword: '',
   });
+  const [reports, setReports] = useState([]);
+  const [reportsLoading, setReportsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchReports = async () => {
+      setReportsLoading(true);
+      try {
+        const data = await getReports();
+        setReports(data);
+      } catch {
+        setReports([]);
+      }
+      setReportsLoading(false);
+    };
+    fetchReports();
+  }, []);
+
+  const handleDownload = async (reportId, fileName) => {
+    try {
+      const blob = await downloadReport(reportId);
+      const url = window.URL.createObjectURL(new Blob([blob]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', fileName || `rapor_${reportId}.pdf`);
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+    } catch {
+      toast.error('Rapor indirilemedi!');
+    }
+  };
 
   // Modal aç/kapat
   const openEditModal = () => {
@@ -108,6 +140,32 @@ const ProfilePage = () => {
               </button>
             </div>
           </div>
+        </div>
+        {/* Raporlarım */}
+        <div className="bg-white rounded-xl shadow p-8 mb-8">
+          <h3 className="text-xl font-bold text-blue-800 mb-4">Raporlarım</h3>
+          {reportsLoading ? (
+            <div>Yükleniyor...</div>
+          ) : reports.length === 0 ? (
+            <div>Henüz raporunuz yok.</div>
+          ) : (
+            <ul className="divide-y divide-gray-100">
+              {reports.map((report) => (
+                <li key={report.id} className="py-3 flex items-center justify-between">
+                  <div>
+                    <div className="font-medium text-gray-900">{report.title || `Rapor #${report.id}`}</div>
+                    <div className="text-xs text-gray-500">{report.createdAt ? new Date(report.createdAt).toLocaleString('tr-TR') : ''}</div>
+                  </div>
+                  <button
+                    className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700 transition text-sm"
+                    onClick={() => handleDownload(report.id, report.fileName)}
+                  >
+                    İndir
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
         {/* Şifre Değiştir Modalı */}
         {showPasswordModal && (

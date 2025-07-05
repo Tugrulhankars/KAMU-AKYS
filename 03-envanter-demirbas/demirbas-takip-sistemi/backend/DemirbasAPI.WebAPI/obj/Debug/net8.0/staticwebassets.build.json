@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "c15syMvExud1V3G0t5fhsqvMRsFXeQLtyWEJxFp+3ZA=",
+  "Source": "DemirbasAPI.WebAPI",
+  "BasePath": "_content/DemirbasAPI.WebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

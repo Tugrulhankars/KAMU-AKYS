@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: demirbas-sqlserver
+    environment:
+      SA_PASSWORD: "YourStrong@Passw0rd"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    networks:
+      - demirbas-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: demirbas-backend
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=DemirbasDB;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=true;
+    ports:
+      - "5000:8080"
+    depends_on:
+      - sqlserver
+    networks:
+      - demirbas-network
+    volumes:
+      - ./backend/logs:/app/logs
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: demirbas-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - demirbas-network
+
+volumes:
+  sqlserver_data:
+
+networks:
+  demirbas-network:
+    driver: bridge 
