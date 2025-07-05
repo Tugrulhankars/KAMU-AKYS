@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\DemirbasAPI.WebAPI.props" />
+</Project>

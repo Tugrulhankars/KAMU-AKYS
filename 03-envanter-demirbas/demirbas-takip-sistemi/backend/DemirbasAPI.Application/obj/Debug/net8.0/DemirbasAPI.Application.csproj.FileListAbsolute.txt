@@ -1,0 +1,16 @@
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Application\obj\Debug\net8.0\DemirbasAPI.Application.csproj.AssemblyReference.cache
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Application\obj\Debug\net8.0\DemirbasAPI.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Application\obj\Debug\net8.0\DemirbasAPI.Application.AssemblyInfoInputs.cache
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Application\obj\Debug\net8.0\DemirbasAPI.Application.AssemblyInfo.cs
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Application\obj\Debug\net8.0\DemirbasAPI.Application.csproj.CoreCompileInputs.cache
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Application\obj\Debug\net8.0\DemirbasAPI.Application.sourcelink.json
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Application\bin\Debug\net8.0\DemirbasAPI.Application.deps.json
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Application\bin\Debug\net8.0\DemirbasAPI.Application.dll
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Application\bin\Debug\net8.0\DemirbasAPI.Application.pdb
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Application\bin\Debug\net8.0\DemirbasAPI.Domain.dll
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Application\bin\Debug\net8.0\DemirbasAPI.Domain.pdb
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Application\obj\Debug\net8.0\DemirbasAPI.Application.dll
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Application\obj\Debug\net8.0\refint\DemirbasAPI.Application.dll
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Application\obj\Debug\net8.0\DemirbasAPI.Application.pdb
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Application\obj\Debug\net8.0\ref\DemirbasAPI.Application.dll
+C:\KAMU-AKYS\03-envanter-demirbas\demirbas-takip-sistemi\backend\DemirbasAPI.Application\obj\Debug\net8.0\DemirbasAPI.Application.csproj.CopyComplete
