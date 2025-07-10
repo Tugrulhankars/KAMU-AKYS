@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenclikKampiYonetim.API", "GenclikKampiYonetim.API.csproj", "{61908A79-D142-4B23-8B4A-00939FA27221}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{61908A79-D142-4B23-8B4A-00939FA27221}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61908A79-D142-4B23-8B4A-00939FA27221}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61908A79-D142-4B23-8B4A-00939FA27221}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61908A79-D142-4B23-8B4A-00939FA27221}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F8A4318F-7B50-40C4-8AD6-11E6DC93156F}
+	EndGlobalSection
+EndGlobal

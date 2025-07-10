@@ -1,0 +1,70 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /api/v1
+
+spring:
+  application:
+    name: spor-musabaka-organizasyon
+  
+  datasource:
+    url: jdbc:postgresql://localhost:5432/spor_musabaka_db
+    username: metropol
+    password: 20002002
+    driver-class-name: org.postgresql.Driver
+    
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: 
+      timeout: 2000ms
+      
+  security:
+    user:
+      name: admin
+      password: admin123
+      
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Europe/Istanbul
+
+# JWT Configuration
+jwt:
+  secret: sporMusabakaOrganizasyonSecretKey2024
+  expiration: 86400000 # 24 saat
+
+# Logging
+logging:
+  level:
+    com.kamu: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+
+# Swagger/OpenAPI
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method 
