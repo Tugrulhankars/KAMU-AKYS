@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: spor_musabaka_postgres
+    environment:
+      POSTGRES_DB: spor_musabaka_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - spor_network
+
+  redis:
+    image: redis:7-alpine
+    container_name: spor_musabaka_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - spor_network
+
+  backend:
+    build: ./backend
+    container_name: spor_musabaka_backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/spor_musabaka_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - spor_network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  spor_network:
+    driver: bridge 
