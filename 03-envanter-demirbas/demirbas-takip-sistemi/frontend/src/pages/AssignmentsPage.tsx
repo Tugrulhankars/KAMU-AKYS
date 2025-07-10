@@ -13,6 +13,7 @@ import { assetService } from '../services/assetService';
 import { userService } from '../services/userService';
 import { Assignment, Asset, User, AssignmentType, CreateAssignmentRequest } from '../types';
 import { useAuth } from '../contexts/AuthContext';
+import { cn } from '../lib/utils';
 
 const AssignmentsPage: React.FC = () => {
   const { user } = useAuth();
@@ -172,39 +173,48 @@ const AssignmentsPage: React.FC = () => {
 
       {/* Assignments Table */}
       <div className="mt-8 bg-white shadow rounded-lg overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+        <div className="overflow-x-auto rounded-xl shadow-2xl bg-gradient-to-br from-primary/10 to-secondary/10 border border-primary/20 animate-fade-in">
+          <table className="min-w-full divide-y divide-primary/20">
+            <thead className="bg-gradient-to-r from-primary/80 to-secondary/80 text-white">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider border-b border-white/20 shadow-sm">
                   İşlem Tipi
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider border-b border-white/20 shadow-sm">
                   Demirbaş
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider border-b border-white/20 shadow-sm">
                   Kullanıcı
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider border-b border-white/20 shadow-sm">
                   Tarih
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider border-b border-white/20 shadow-sm">
                   Durum
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider border-b border-white/20 shadow-sm">
                   Notlar
+                </th>
+                <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider border-b border-white/20 shadow-sm">
+                  İşlemler
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {filteredAssignments.map(assignment => (
-                <tr key={assignment.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">
+            <tbody className="bg-white/80 divide-y divide-primary/10">
+              {filteredAssignments.map((assignment, idx) => (
+                <tr
+                  key={assignment.id}
+                  className={cn(
+                    idx % 2 === 0 ? "bg-white/60" : "bg-primary/5",
+                    "hover:bg-gradient-to-r hover:from-primary/10 hover:to-secondary/10 transition-colors group"
+                  )}
+                >
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 group-hover:text-primary font-medium border-b border-primary/10">
                     <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${assignmentService.getTypeColor(assignment.type)}`}>
                       {assignmentService.getTypeText(assignment.type)}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 group-hover:text-primary font-medium border-b border-primary/10">
                     <div className="flex items-center">
                       <div className="flex-shrink-0 h-10 w-10">
                         <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
@@ -221,7 +231,7 @@ const AssignmentsPage: React.FC = () => {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 group-hover:text-primary font-medium border-b border-primary/10">
                     <div className="flex items-center">
                       <div className="flex-shrink-0 h-10 w-10">
                         <div className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center">
@@ -238,7 +248,7 @@ const AssignmentsPage: React.FC = () => {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 group-hover:text-primary font-medium border-b border-primary/10">
                     <div className="text-sm text-gray-900">
                       {new Date(assignment.assignmentDate).toLocaleDateString('tr-TR')}
                     </div>
@@ -248,7 +258,7 @@ const AssignmentsPage: React.FC = () => {
                       </div>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 group-hover:text-primary font-medium border-b border-primary/10">
                     <div className="flex items-center">
                       {assignment.type === AssignmentType.Assignment ? (
                         !assignment.returnDate ? (
@@ -270,10 +280,15 @@ const AssignmentsPage: React.FC = () => {
                       )}
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-6 py-4 text-sm text-gray-900 group-hover:text-primary font-medium border-b border-primary/10">
                     <div className="text-sm text-gray-900 max-w-xs truncate">
                       {assignment.notes || '-'}
                     </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-right border-b border-primary/10">
+                    <button className="inline-flex items-center px-3 py-1 rounded-lg bg-gradient-to-r from-primary to-secondary text-white font-semibold shadow-md hover:scale-105 transition-transform">
+                      Detay
+                    </button>
                   </td>
                 </tr>
               ))}

@@ -79,20 +79,21 @@ const ModernLayout: React.FC = () => {
 
       {/* Mobile sidebar */}
       <div className={cn(
-        "fixed inset-y-0 left-0 z-50 w-64 bg-card border-r transform transition-transform duration-300 ease-in-out md:hidden",
+        "fixed inset-y-0 left-0 z-50 w-64 bg-gradient-to-b from-primary to-secondary/80 backdrop-blur-md border-r shadow-xl transform transition-transform duration-300 ease-in-out md:hidden",
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
       )}>
-        <div className="flex items-center justify-between p-4 border-b">
+        <div className="flex items-center justify-between p-4 border-b border-white/10">
           <div className="flex items-center space-x-2">
-            <Package className="h-8 w-8 text-primary" />
-            <h1 className="text-xl font-bold">Demirbaş</h1>
+            <Package className="h-8 w-8 text-white drop-shadow-lg" />
+            <h1 className="text-xl font-bold text-white tracking-wide">Demirbaş</h1>
           </div>
           <Button 
             variant="ghost" 
             size="icon"
             onClick={() => setSidebarOpen(false)}
+            className="hover:bg-white/10"
           >
-            <X className="h-6 w-6" />
+            <X className="h-6 w-6 text-white" />
           </Button>
         </div>
         <SidebarContent 
@@ -106,11 +107,11 @@ const ModernLayout: React.FC = () => {
       {/* Desktop sidebar */}
       <div className="hidden md:flex md:flex-shrink-0">
         <div className="flex flex-col w-64">
-          <Card className="h-full rounded-none border-l-0 border-t-0 border-b-0">
+          <Card className="h-full rounded-none border-l-0 border-t-0 border-b-0 bg-gradient-to-b from-primary to-secondary/80 shadow-2xl">
             <CardContent className="p-0">
-              <div className="flex items-center space-x-2 p-6 border-b">
-                <Package className="h-8 w-8 text-primary" />
-                <h1 className="text-xl font-bold">Demirbaş</h1>
+              <div className="flex items-center space-x-2 p-6 border-b border-white/10">
+                <Package className="h-8 w-8 text-white drop-shadow-lg" />
+                <h1 className="text-xl font-bold text-white tracking-wide">Demirbaş</h1>
               </div>
               <SidebarContent 
                 navigation={navigation} 
@@ -125,36 +126,36 @@ const ModernLayout: React.FC = () => {
       {/* Main content */}
       <div className="flex flex-col w-0 flex-1 overflow-hidden">
         {/* Top navigation */}
-        <Card className="rounded-none border-l-0 border-t-0 border-r-0">
+        <Card className="rounded-none border-l-0 border-t-0 border-r-0 bg-gradient-to-r from-primary/90 to-secondary/80 backdrop-blur-md shadow-md">
           <CardContent className="p-0">
             <div className="flex items-center justify-between h-16 px-4">
               <div className="flex items-center space-x-4">
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="md:hidden"
+                  className="md:hidden hover:bg-white/10"
                   onClick={() => setSidebarOpen(true)}
                 >
-                  <Menu className="h-6 w-6" />
+                  <Menu className="h-6 w-6 text-white" />
                 </Button>
-                <h2 className="text-xl font-semibold">Demirbaş Takip Sistemi</h2>
+                <h2 className="text-xl font-semibold text-white drop-shadow">Demirbaş Takip Sistemi</h2>
               </div>
               
               <div className="flex items-center space-x-4">
                 <ThemeToggle />
-                <Button variant="ghost" size="icon">
-                  <Bell className="h-5 w-5" />
+                <Button variant="ghost" size="icon" className="hover:bg-white/10">
+                  <Bell className="h-5 w-5 text-white" />
                 </Button>
-                <Button variant="ghost" size="icon">
-                  <Settings className="h-5 w-5" />
+                <Button variant="ghost" size="icon" className="hover:bg-white/10">
+                  <Settings className="h-5 w-5 text-white" />
                 </Button>
                 
                 <div className="flex items-center space-x-3">
                   <div className="hidden sm:block text-right">
-                    <p className="text-sm font-medium">
+                    <p className="text-sm font-medium text-white/90">
                       {user?.firstName} {user?.lastName}
                     </p>
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-xs text-white/60">
                       {user?.role === UserRole.Admin ? 'Yönetici' : 'Personel'}
                     </p>
                   </div>
@@ -163,8 +164,9 @@ const ModernLayout: React.FC = () => {
                     size="icon"
                     onClick={handleLogout}
                     title="Çıkış yap"
+                    className="hover:bg-white/10"
                   >
-                    <LogOut className="h-5 w-5" />
+                    <LogOut className="h-5 w-5 text-white" />
                   </Button>
                 </div>
               </div>

@@ -89,17 +89,10 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800 py-12">
-      <div className="max-w-lg w-full space-y-8 bg-white/90 rounded-2xl shadow-2xl p-10 backdrop-blur-md">
-        <div className="flex flex-col items-center">
-          <CubeIcon className="h-14 w-14 text-indigo-700 mb-2" />
-          <h2 className="text-3xl font-extrabold text-gray-900 mb-2 tracking-tight">Hesap Oluştur</h2>
-          <p className="text-sm text-gray-500 mb-4">
-            Zaten hesabınız var mı?{' '}
-            <Link to="/login" className="font-semibold text-indigo-600 hover:text-indigo-800 transition-colors">Giriş yapın</Link>
-          </p>
-        </div>
-        <form className="space-y-6" onSubmit={handleSubmit}>
+    <div className="min-h-screen flex items-center justify-center bg-background">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-card p-8 animate-fade-in border border-border">
+        <h2 className="text-3xl font-bold text-center text-primary mb-6 drop-shadow">Kayıt Ol</h2>
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">Ad</label>
@@ -214,28 +207,11 @@ const RegisterPage: React.FC = () => {
               onChange={handleChange}
             />
           </div>
-          <div>
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full flex justify-center py-3 px-4 border border-transparent text-base font-bold rounded-lg text-white bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg hover:from-purple-600 hover:to-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed transition-all"
-            >
-              {isLoading ? (
-                <span className="flex items-center">
-                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  Kayıt yapılıyor...
-                </span>
-              ) : (
-                'Kayıt Ol'
-              )}
-            </button>
-          </div>
+          <button type="submit" className="w-full bg-primary text-white font-bold py-3 rounded-xl shadow-lg hover:bg-primary/90 transition text-lg">Kayıt Ol</button>
         </form>
-        <div className="text-center mt-6">
-          <Link to="/" className="text-indigo-600 hover:text-indigo-800 text-sm font-semibold transition-colors">← Ana sayfaya dön</Link>
+        <div className="mt-6 text-center">
+          <span className="text-muted-foreground">Zaten hesabınız var mı?</span>
+          <Link to="/login" className="ml-2 text-primary font-bold hover:underline">Giriş Yap</Link>
         </div>
       </div>
     </div>

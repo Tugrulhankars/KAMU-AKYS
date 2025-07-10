@@ -66,11 +66,11 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-primary text-primary-foreground hover:bg-primary/90 font-medium py-2 px-4 rounded-lg transition duration-200 ease-in-out;
+    @apply bg-gradient-to-r from-primary to-secondary text-white font-bold shadow-lg hover:from-secondary hover:to-primary hover:scale-105 border-0 py-2 px-6 rounded-xl transition duration-200 ease-in-out;
   }
   
   .btn-secondary {
-    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 font-medium py-2 px-4 rounded-lg transition duration-200 ease-in-out;
+    @apply bg-white text-primary border-2 border-primary font-bold hover:bg-primary hover:text-white hover:scale-105 py-2 px-6 rounded-xl transition duration-200 ease-in-out;
   }
   
   .btn-danger {

@@ -36,17 +36,10 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800">
-      <div className="max-w-md w-full space-y-8 bg-white/90 rounded-2xl shadow-2xl p-10 backdrop-blur-md">
-        <div className="flex flex-col items-center">
-          <CubeIcon className="h-14 w-14 text-blue-700 mb-2" />
-          <h2 className="text-3xl font-extrabold text-gray-900 mb-2 tracking-tight">Giriş Yap</h2>
-          <p className="text-sm text-gray-500 mb-4">
-            Hesabınız yok mu?{' '}
-            <Link to="/register" className="font-semibold text-indigo-600 hover:text-indigo-800 transition-colors">Kayıt olun</Link>
-          </p>
-        </div>
-        <form className="space-y-6" onSubmit={handleSubmit}>
+    <div className="min-h-screen flex items-center justify-center bg-background">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-card p-8 animate-fade-in border border-border">
+        <h2 className="text-3xl font-bold text-center text-primary mb-6 drop-shadow">Giriş Yap</h2>
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">E-posta</label>
             <input
@@ -105,7 +98,7 @@ const LoginPage: React.FC = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full flex justify-center py-3 px-4 border border-transparent text-base font-bold rounded-lg text-white bg-gradient-to-r from-blue-600 to-indigo-600 shadow-lg hover:from-indigo-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-60 disabled:cursor-not-allowed transition-all"
+              className="w-full bg-primary text-white font-bold py-3 rounded-xl shadow-lg hover:bg-primary/90 transition text-lg"
             >
               {isLoading ? (
                 <span className="flex items-center">
@@ -121,16 +114,9 @@ const LoginPage: React.FC = () => {
             </button>
           </div>
         </form>
-        <div className="mt-8 text-center">
-          <span className="text-xs text-gray-400">Demo Hesaplar:</span>
-          <div className="mt-2 text-xs text-gray-500 space-y-1">
-            <div><strong>Admin:</strong> admin / admin123</div>
-            <div><strong>Depo Görevlisi:</strong> depo / depo123</div>
-            <div><strong>İnceleme Yetkilisi:</strong> inceleme / inceleme123</div>
-          </div>
-        </div>
-        <div className="text-center mt-6">
-          <Link to="/" className="text-indigo-600 hover:text-indigo-800 text-sm font-semibold transition-colors">← Ana sayfaya dön</Link>
+        <div className="mt-6 text-center">
+          <span className="text-muted-foreground">Hesabınız yok mu?</span>
+          <Link to="/register" className="ml-2 text-primary font-bold hover:underline">Kayıt Ol</Link>
         </div>
       </div>
     </div>

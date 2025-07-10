@@ -150,20 +150,18 @@ const ModernDashboard: React.FC = () => {
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {statCards.map((card) => (
           <Link key={card.name} to={card.href}>
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div className="space-y-2">
-                    <p className="text-sm font-medium text-muted-foreground">
-                      {card.name}
-                    </p>
-                    <p className="text-2xl font-bold">
-                      {card.value}
-                    </p>
-                  </div>
-                  <div className={cn("p-3 rounded-full bg-muted", card.color)}>
-                    <card.icon className="h-6 w-6" />
-                  </div>
+            <Card className="hover:shadow-2xl transition-shadow cursor-pointer bg-gradient-to-br from-primary/90 to-secondary/80 border-0 shadow-lg group animate-fade-in">
+              <CardContent className="p-6 flex items-center justify-between">
+                <div className="space-y-2">
+                  <p className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">
+                    {card.name}
+                  </p>
+                  <p className="text-3xl font-extrabold text-white drop-shadow">
+                    {card.value}
+                  </p>
+                </div>
+                <div className={cn("p-3 rounded-full bg-white/20 group-hover:bg-white/40 transition-colors", card.color)}>
+                  <card.icon className="h-8 w-8 text-white drop-shadow-lg group-hover:scale-110 transition-transform" />
                 </div>
               </CardContent>
             </Card>

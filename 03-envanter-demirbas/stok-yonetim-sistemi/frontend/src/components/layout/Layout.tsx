@@ -95,157 +95,105 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Mobile sidebar */}
+    <div className="min-h-screen bg-background flex">
+      {/* Sidebar */}
+      <aside className="hidden lg:flex flex-col w-64 bg-sidebar text-white shadow-2xl rounded-tr-3xl rounded-br-3xl py-8 px-4">
+        <div className="flex items-center mb-10 px-2">
+          <div className="h-10 w-10 bg-primary rounded-xl flex items-center justify-center shadow-lg">
+            <CubeIcon className="h-6 w-6 text-white" />
+          </div>
+          <span className="ml-3 text-2xl font-extrabold tracking-wide">StokPanel</span>
+        </div>
+        <nav className="flex-1 space-y-2">
+          {navigation.map((item) => {
+            if (!hasPermission(item.allowedRoles)) return null;
+            return (
+              <Link
+                key={item.name}
+                to={item.href}
+                className={`flex items-center gap-3 px-4 py-3 rounded-xl text-lg font-semibold transition-all duration-150
+                  ${isCurrentPath(item.href)
+                    ? 'bg-primary text-white shadow-md scale-105'
+                    : 'text-gray-300 hover:bg-primary/20 hover:text-white'}
+                `}
+              >
+                <item.icon className={`h-7 w-7 ${isCurrentPath(item.href) ? 'text-white' : 'text-primary/70'}`} />
+                {item.name}
+              </Link>
+            );
+          })}
+        </nav>
+        <div className="mt-auto flex flex-col gap-2 px-2">
+          <button onClick={handleLogout} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-danger text-white font-bold hover:bg-danger/80 transition">
+            <ArrowRightOnRectangleIcon className="h-6 w-6" /> Çıkış Yap
+          </button>
+          <div className="flex items-center gap-2 mt-4">
+            <UserCircleIcon className="h-7 w-7 text-primary" />
+            <span className="text-base font-medium">{user?.fullName}</span>
+          </div>
+        </div>
+      </aside>
+      {/* Main content */}
+      <div className="flex-1 flex flex-col min-h-screen">
+        {/* Top bar */}
+        <header className="sticky top-0 z-10 h-20 flex items-center bg-white shadow-card px-8">
+          <button
+            type="button"
+            className="lg:hidden mr-4 text-primary"
+            onClick={() => setSidebarOpen(true)}
+          >
+            <Bars3Icon className="h-7 w-7" />
+          </button>
+          <h1 className="text-2xl font-bold text-gray-800 tracking-wide">{navigation.find(n => isCurrentPath(n.href))?.name || 'Panel'}</h1>
+        </header>
+        {/* Content area */}
+        <main className="flex-1 bg-background p-8 rounded-tl-3xl">
+          {children}
+        </main>
+      </div>
+      {/* Mobile sidebar (aynı şekilde güncellenmeli) */}
       {sidebarOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
-          <div className="fixed inset-0 bg-gray-600 bg-opacity-75" onClick={() => setSidebarOpen(false)} />
-          <div className="fixed inset-y-0 left-0 flex w-64 flex-col bg-white">
-            <div className="flex h-16 shrink-0 items-center justify-between px-4 border-b border-gray-200">
-              <div className="flex items-center">
-                <div className="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                  <CubeIcon className="h-5 w-5 text-white" />
-                </div>
-                <span className="ml-2 text-lg font-semibold text-gray-900">Stok Yönetim</span>
+          <div className="fixed inset-0 bg-black/40" onClick={() => setSidebarOpen(false)} />
+          <aside className="fixed inset-y-0 left-0 w-64 bg-sidebar text-white shadow-2xl rounded-tr-3xl rounded-br-3xl py-8 px-4 flex flex-col">
+            <div className="flex items-center mb-10 px-2">
+              <div className="h-10 w-10 bg-primary rounded-xl flex items-center justify-center shadow-lg">
+                <CubeIcon className="h-6 w-6 text-white" />
               </div>
-              <button
-                type="button"
-                className="text-gray-400 hover:text-gray-600"
-                onClick={() => setSidebarOpen(false)}
-              >
-                <XMarkIcon className="h-6 w-6" />
-              </button>
+              <span className="ml-3 text-2xl font-extrabold tracking-wide">StokPanel</span>
             </div>
-            <nav className="flex-1 space-y-1 p-4">
+            <nav className="flex-1 space-y-2">
               {navigation.map((item) => {
                 if (!hasPermission(item.allowedRoles)) return null;
                 return (
                   <Link
                     key={item.name}
                     to={item.href}
-                    className={`${
-                      isCurrentPath(item.href)
-                        ? 'bg-blue-50 border-blue-500 text-blue-700'
-                        : 'border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900'
-                    } group flex items-center px-3 py-2 text-sm font-medium border-l-4 transition-colors`}
+                    className={`flex items-center gap-3 px-4 py-3 rounded-xl text-lg font-semibold transition-all duration-150
+                      ${isCurrentPath(item.href)
+                        ? 'bg-primary text-white shadow-md scale-105'
+                        : 'text-gray-300 hover:bg-primary/20 hover:text-white'}
+                    `}
                     onClick={() => setSidebarOpen(false)}
                   >
-                    <item.icon
-                      className={`${
-                        isCurrentPath(item.href) ? 'text-blue-500' : 'text-gray-400 group-hover:text-gray-500'
-                      } mr-3 h-6 w-6`}
-                    />
+                    <item.icon className={`h-7 w-7 ${isCurrentPath(item.href) ? 'text-white' : 'text-primary/70'}`} />
                     {item.name}
                   </Link>
                 );
               })}
             </nav>
-          </div>
+            <div className="mt-auto flex flex-col gap-2 px-2">
+              <button onClick={handleLogout} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-danger text-white font-bold hover:bg-danger/80 transition">
+                <ArrowRightOnRectangleIcon className="h-6 w-6" /> Çıkış Yap
+              </button>
+              <div className="flex items-center gap-2 mt-4">
+                <UserCircleIcon className="h-7 w-7 text-primary" />
+                <span className="text-base font-medium">{user?.fullName}</span>
+              </div>
+            </div>
+          </aside>
         </div>
       )}
-
-      {/* Desktop sidebar */}
-      <div className="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-64 lg:flex-col">
-        <div className="flex min-h-0 flex-1 flex-col bg-white border-r border-gray-200">
-          <div className="flex h-16 shrink-0 items-center px-4 border-b border-gray-200">
-            <div className="flex items-center">
-              <div className="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <CubeIcon className="h-5 w-5 text-white" />
-              </div>
-              <span className="ml-2 text-lg font-semibold text-gray-900">Stok Yönetim</span>
-            </div>
-          </div>
-          <nav className="flex-1 space-y-1 p-4">
-            {navigation.map((item) => {
-              if (!hasPermission(item.allowedRoles)) return null;
-              return (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={`${
-                    isCurrentPath(item.href)
-                      ? 'bg-blue-50 border-blue-500 text-blue-700'
-                      : 'border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900'
-                  } group flex items-center px-3 py-2 text-sm font-medium border-l-4 transition-colors`}
-                >
-                  <item.icon
-                    className={`${
-                      isCurrentPath(item.href) ? 'text-blue-500' : 'text-gray-400 group-hover:text-gray-500'
-                    } mr-3 h-6 w-6`}
-                  />
-                  {item.name}
-                </Link>
-              );
-            })}
-          </nav>
-        </div>
-      </div>
-
-      {/* Main content */}
-      <div className="lg:pl-64">
-        {/* Top navigation */}
-        <div className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
-          <button
-            type="button"
-            className="-m-2.5 p-2.5 text-gray-700 lg:hidden"
-            onClick={() => setSidebarOpen(true)}
-          >
-            <Bars3Icon className="h-6 w-6" />
-          </button>
-
-          {/* Separator */}
-          <div className="h-6 w-px bg-gray-200 lg:hidden" />
-
-          <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-            <div className="flex flex-1 items-center">
-              {/* Breadcrumb or page title could go here */}
-            </div>
-            <div className="flex items-center gap-x-4 lg:gap-x-6">
-              {/* User menu */}
-              <div className="relative">
-                <div className="flex items-center space-x-3">
-                  <div className="flex-shrink-0">
-                    <UserCircleIcon className="h-8 w-8 text-gray-400" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium text-gray-900">
-                      {user?.firstName} {user?.lastName}
-                    </p>
-                    <p className="text-sm text-gray-500">
-                      {user?.role && getRoleLabel(user.role.toString())}
-                    </p>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <button
-                      type="button"
-                      className="p-2 text-gray-400 hover:text-gray-500"
-                      title="Ayarlar"
-                      onClick={() => navigate('/profile')}
-                    >
-                      <Cog6ToothIcon className="h-5 w-5" />
-                    </button>
-                    <button
-                      type="button"
-                      className="p-2 text-gray-400 hover:text-gray-500"
-                      onClick={handleLogout}
-                      title="Çıkış Yap"
-                    >
-                      <ArrowRightOnRectangleIcon className="h-5 w-5" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Page content */}
-        <main className="py-8">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            {children}
-          </div>
-        </main>
-      </div>
     </div>
   );
 };

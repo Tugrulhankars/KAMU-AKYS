@@ -127,208 +127,188 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full">
-        <div className="bg-white rounded-2xl shadow-xl border border-border p-8 space-y-8">
-          <div className="flex flex-col items-center">
-            <CubeIcon className="h-14 w-14 text-primary mb-2" />
-            <h2 className="text-2xl font-bold text-primary mb-1 text-center">Kamu-AKYS Demirbaş Takip Sistemi</h2>
-            <p className="text-sm text-muted-foreground text-center">Hızlıca kayıt olun ve sisteme erişin</p>
-          </div>
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            <div className="space-y-4">
-              {/* Kullanıcı Adı */}
-              <div>
-                <label htmlFor="username" className="block text-sm font-medium text-muted-foreground mb-1">Kullanıcı Adı *</label>
-                <div className="relative">
-                  <UserIcon className="h-5 w-5 text-muted-foreground absolute left-3 top-1/2 transform -translate-y-1/2" />
-                  <input
-                    id="username"
-                    name="username"
-                    type="text"
-                    required
-                    className={`input-field pl-10 text-base rounded-xl h-12 ${errors.username ? 'border-red-500' : ''}`}
-                    placeholder="Kullanıcı adınızı girin"
-                    value={formData.username}
-                    onChange={handleChange}
-                  />
-                </div>
-                {errors.username && (
-                  <p className="mt-1 text-sm text-red-600">{errors.username}</p>
-                )}
-              </div>
-              {/* E-posta */}
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-muted-foreground mb-1">E-posta *</label>
-                <div className="relative">
-                  <EnvelopeIcon className="h-5 w-5 text-muted-foreground absolute left-3 top-1/2 transform -translate-y-1/2" />
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    className={`input-field pl-10 text-base rounded-xl h-12 ${errors.email ? 'border-red-500' : ''}`}
-                    placeholder="E-posta adresinizi girin"
-                    value={formData.email}
-                    onChange={handleChange}
-                  />
-                </div>
-                {errors.email && (
-                  <p className="mt-1 text-sm text-red-600">{errors.email}</p>
-                )}
-              </div>
-              {/* Şifre */}
-              <div>
-                <label htmlFor="password" className="block text-sm font-medium text-muted-foreground mb-1">Şifre *</label>
-                <div className="relative">
-                  <input
-                    id="password"
-                    name="password"
-                    type={showPassword ? 'text' : 'password'}
-                    required
-                    className={`input-field pr-12 text-base rounded-xl h-12 ${errors.password ? 'border-red-500' : ''}`}
-                    placeholder="Şifrenizi girin"
-                    value={formData.password}
-                    onChange={handleChange}
-                  />
-                  <button
-                    type="button"
-                    className="absolute inset-y-0 right-0 pr-4 flex items-center"
-                    onClick={() => setShowPassword(!showPassword)}
-                    tabIndex={-1}
-                  >
-                    {showPassword ? (
-                      <EyeSlashIcon className="h-5 w-5 text-muted-foreground" />
-                    ) : (
-                      <EyeIcon className="h-5 w-5 text-muted-foreground" />
-                    )}
-                  </button>
-                </div>
-                {errors.password && (
-                  <p className="mt-1 text-sm text-red-600">{errors.password}</p>
-                )}
-              </div>
-              {/* Şifre Tekrar */}
-              <div>
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-muted-foreground mb-1">Şifre Tekrar *</label>
-                <div className="relative">
-                  <input
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    type={showConfirmPassword ? 'text' : 'password'}
-                    required
-                    className={`input-field pr-12 text-base rounded-xl h-12 ${errors.confirmPassword ? 'border-red-500' : ''}`}
-                    placeholder="Şifrenizi tekrar girin"
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                  />
-                  <button
-                    type="button"
-                    className="absolute inset-y-0 right-0 pr-4 flex items-center"
-                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    tabIndex={-1}
-                  >
-                    {showConfirmPassword ? (
-                      <EyeSlashIcon className="h-5 w-5 text-muted-foreground" />
-                    ) : (
-                      <EyeIcon className="h-5 w-5 text-muted-foreground" />
-                    )}
-                  </button>
-                </div>
-                {errors.confirmPassword && (
-                  <p className="mt-1 text-sm text-red-600">{errors.confirmPassword}</p>
-                )}
-              </div>
-              {/* Ad */}
-              <div>
-                <label htmlFor="firstName" className="block text-sm font-medium text-muted-foreground mb-1">Ad *</label>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/10 to-secondary/10">
+      <div className="w-full max-w-md bg-white/90 rounded-2xl shadow-2xl p-8 animate-fade-in border border-primary/20">
+        <h2 className="text-3xl font-bold text-center text-primary mb-6 drop-shadow">Kayıt Ol</h2>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="space-y-4">
+            {/* Kullanıcı Adı */}
+            <div>
+              <label htmlFor="username" className="block text-sm font-medium text-muted-foreground mb-1">Kullanıcı Adı *</label>
+              <div className="relative">
+                <UserIcon className="h-5 w-5 text-muted-foreground absolute left-3 top-1/2 transform -translate-y-1/2" />
                 <input
-                  id="firstName"
-                  name="firstName"
+                  id="username"
+                  name="username"
                   type="text"
                   required
-                  className={`input-field text-base rounded-xl h-12 ${errors.firstName ? 'border-red-500' : ''}`}
-                  placeholder="Adınızı girin"
-                  value={formData.firstName}
+                  className={`input-field pl-10 text-base rounded-xl h-12 ${errors.username ? 'border-red-500' : ''}`}
+                  placeholder="Kullanıcı adınızı girin"
+                  value={formData.username}
                   onChange={handleChange}
                 />
-                {errors.firstName && (
-                  <p className="mt-1 text-sm text-red-600">{errors.firstName}</p>
-                )}
               </div>
-              {/* Soyad */}
-              <div>
-                <label htmlFor="lastName" className="block text-sm font-medium text-muted-foreground mb-1">Soyad *</label>
-                <input
-                  id="lastName"
-                  name="lastName"
-                  type="text"
-                  required
-                  className={`input-field text-base rounded-xl h-12 ${errors.lastName ? 'border-red-500' : ''}`}
-                  placeholder="Soyadınızı girin"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                />
-                {errors.lastName && (
-                  <p className="mt-1 text-sm text-red-600">{errors.lastName}</p>
-                )}
-              </div>
-              {/* Telefon */}
-              <div>
-                <label htmlFor="phoneNumber" className="block text-sm font-medium text-muted-foreground mb-1">Telefon</label>
-                <div className="relative">
-                  <PhoneIcon className="h-5 w-5 text-muted-foreground absolute left-3 top-1/2 transform -translate-y-1/2" />
-                  <input
-                    id="phoneNumber"
-                    name="phoneNumber"
-                    type="text"
-                    className={`input-field pl-10 text-base rounded-xl h-12 ${errors.phoneNumber ? 'border-red-500' : ''}`}
-                    placeholder="Telefon numaranız (isteğe bağlı)"
-                    value={formData.phoneNumber}
-                    onChange={handleChange}
-                  />
-                </div>
-                {errors.phoneNumber && (
-                  <p className="mt-1 text-sm text-red-600">{errors.phoneNumber}</p>
-                )}
-              </div>
-              {/* Departman */}
-              <div>
-                <label htmlFor="department" className="block text-sm font-medium text-muted-foreground mb-1">Departman</label>
-                <div className="relative">
-                  <BuildingOfficeIcon className="h-5 w-5 text-muted-foreground absolute left-3 top-1/2 transform -translate-y-1/2" />
-                  <input
-                    id="department"
-                    name="department"
-                    type="text"
-                    className="input-field pl-10 text-base rounded-xl h-12"
-                    placeholder="Departman (isteğe bağlı)"
-                    value={formData.department}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-            </div>
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full btn-primary text-base h-12 rounded-xl mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isLoading ? (
-                <div className="flex items-center justify-center">
-                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                  Kayıt Olunuyor...
-                </div>
-              ) : (
-                'Kayıt Ol'
+              {errors.username && (
+                <p className="mt-1 text-sm text-red-600">{errors.username}</p>
               )}
-            </button>
-            <div className="text-center mt-2">
-              <Link to="/login">
-                <button type="button" className="btn-secondary w-full text-base h-12 rounded-xl">Giriş Yap</button>
-              </Link>
             </div>
-          </form>
+            {/* E-posta */}
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-muted-foreground mb-1">E-posta *</label>
+              <div className="relative">
+                <EnvelopeIcon className="h-5 w-5 text-muted-foreground absolute left-3 top-1/2 transform -translate-y-1/2" />
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  className={`input-field pl-10 text-base rounded-xl h-12 ${errors.email ? 'border-red-500' : ''}`}
+                  placeholder="E-posta adresinizi girin"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </div>
+              {errors.email && (
+                <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+              )}
+            </div>
+            {/* Şifre */}
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium text-muted-foreground mb-1">Şifre *</label>
+              <div className="relative">
+                <input
+                  id="password"
+                  name="password"
+                  type={showPassword ? 'text' : 'password'}
+                  required
+                  className={`input-field pr-12 text-base rounded-xl h-12 ${errors.password ? 'border-red-500' : ''}`}
+                  placeholder="Şifrenizi girin"
+                  value={formData.password}
+                  onChange={handleChange}
+                />
+                <button
+                  type="button"
+                  className="absolute inset-y-0 right-0 pr-4 flex items-center"
+                  onClick={() => setShowPassword(!showPassword)}
+                  tabIndex={-1}
+                >
+                  {showPassword ? (
+                    <EyeSlashIcon className="h-5 w-5 text-muted-foreground" />
+                  ) : (
+                    <EyeIcon className="h-5 w-5 text-muted-foreground" />
+                  )}
+                </button>
+              </div>
+              {errors.password && (
+                <p className="mt-1 text-sm text-red-600">{errors.password}</p>
+              )}
+            </div>
+            {/* Şifre Tekrar */}
+            <div>
+              <label htmlFor="confirmPassword" className="block text-sm font-medium text-muted-foreground mb-1">Şifre Tekrar *</label>
+              <div className="relative">
+                <input
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  type={showConfirmPassword ? 'text' : 'password'}
+                  required
+                  className={`input-field pr-12 text-base rounded-xl h-12 ${errors.confirmPassword ? 'border-red-500' : ''}`}
+                  placeholder="Şifrenizi tekrar girin"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                />
+                <button
+                  type="button"
+                  className="absolute inset-y-0 right-0 pr-4 flex items-center"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  tabIndex={-1}
+                >
+                  {showConfirmPassword ? (
+                    <EyeSlashIcon className="h-5 w-5 text-muted-foreground" />
+                  ) : (
+                    <EyeIcon className="h-5 w-5 text-muted-foreground" />
+                  )}
+                </button>
+              </div>
+              {errors.confirmPassword && (
+                <p className="mt-1 text-sm text-red-600">{errors.confirmPassword}</p>
+              )}
+            </div>
+            {/* Ad */}
+            <div>
+              <label htmlFor="firstName" className="block text-sm font-medium text-muted-foreground mb-1">Ad *</label>
+              <input
+                id="firstName"
+                name="firstName"
+                type="text"
+                required
+                className={`input-field text-base rounded-xl h-12 ${errors.firstName ? 'border-red-500' : ''}`}
+                placeholder="Adınızı girin"
+                value={formData.firstName}
+                onChange={handleChange}
+              />
+              {errors.firstName && (
+                <p className="mt-1 text-sm text-red-600">{errors.firstName}</p>
+              )}
+            </div>
+            {/* Soyad */}
+            <div>
+              <label htmlFor="lastName" className="block text-sm font-medium text-muted-foreground mb-1">Soyad *</label>
+              <input
+                id="lastName"
+                name="lastName"
+                type="text"
+                required
+                className={`input-field text-base rounded-xl h-12 ${errors.lastName ? 'border-red-500' : ''}`}
+                placeholder="Soyadınızı girin"
+                value={formData.lastName}
+                onChange={handleChange}
+              />
+              {errors.lastName && (
+                <p className="mt-1 text-sm text-red-600">{errors.lastName}</p>
+              )}
+            </div>
+            {/* Telefon */}
+            <div>
+              <label htmlFor="phoneNumber" className="block text-sm font-medium text-muted-foreground mb-1">Telefon</label>
+              <div className="relative">
+                <PhoneIcon className="h-5 w-5 text-muted-foreground absolute left-3 top-1/2 transform -translate-y-1/2" />
+                <input
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  type="text"
+                  className={`input-field pl-10 text-base rounded-xl h-12 ${errors.phoneNumber ? 'border-red-500' : ''}`}
+                  placeholder="Telefon numaranız (isteğe bağlı)"
+                  value={formData.phoneNumber}
+                  onChange={handleChange}
+                />
+              </div>
+              {errors.phoneNumber && (
+                <p className="mt-1 text-sm text-red-600">{errors.phoneNumber}</p>
+              )}
+            </div>
+            {/* Departman */}
+            <div>
+              <label htmlFor="department" className="block text-sm font-medium text-muted-foreground mb-1">Departman</label>
+              <div className="relative">
+                <BuildingOfficeIcon className="h-5 w-5 text-muted-foreground absolute left-3 top-1/2 transform -translate-y-1/2" />
+                <input
+                  id="department"
+                  name="department"
+                  type="text"
+                  className="input-field pl-10 text-base rounded-xl h-12"
+                  placeholder="Departman (isteğe bağlı)"
+                  value={formData.department}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+          </div>
+          <button type="submit" className="btn-primary w-full text-lg">Kayıt Ol</button>
+        </form>
+        <div className="mt-6 text-center">
+          <span className="text-muted-foreground">Zaten hesabınız var mı?</span>
+          <Link to="/login" className="ml-2 btn-secondary inline-block">Giriş Yap</Link>
         </div>
       </div>
     </div>

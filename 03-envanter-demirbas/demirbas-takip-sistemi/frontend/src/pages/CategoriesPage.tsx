@@ -9,6 +9,7 @@ import {
 import { categoryService } from '../services/categoryService';
 import { Category, CreateCategoryRequest } from '../types';
 import { useAuth } from '../contexts/AuthContext';
+import { cn } from '../lib/utils';
 
 const CategoriesPage: React.FC = () => {
   const { user } = useAuth();
@@ -148,56 +149,49 @@ const CategoriesPage: React.FC = () => {
       )}
 
       {/* Categories Grid */}
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {categories.map(category => (
-          <div key={category.id} className="bg-white shadow rounded-lg p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
-                    <RectangleStackIcon className="h-6 w-6 text-blue-600" />
-                  </div>
-                </div>
-                <div className="ml-3">
-                  <h3 className="text-lg font-medium text-gray-900">{category.name}</h3>
-                  <p className="text-sm text-gray-500">{category.code}</p>
-                </div>
-              </div>
-              {user?.role === 1 && (
-                <div className="flex space-x-2">
-                  <button
-                    onClick={() => openEditModal(category)}
-                    className="text-blue-600 hover:text-blue-900"
+      <div className="overflow-x-auto rounded-xl shadow-2xl bg-gradient-to-br from-primary/10 to-secondary/10 border border-primary/20 animate-fade-in">
+        <table className="min-w-full divide-y divide-primary/20">
+          <thead className="bg-gradient-to-r from-primary/80 to-secondary/80 text-white">
+            <tr>
+              {columns.map((col) => (
+                <th
+                  key={col.key}
+                  className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider border-b border-white/20 shadow-sm"
+                >
+                  {col.title}
+                </th>
+              ))}
+              <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider border-b border-white/20 shadow-sm">
+                İşlemler
+              </th>
+            </tr>
+          </thead>
+          <tbody className="bg-white/80 divide-y divide-primary/10">
+            {categories.map((category, idx) => (
+              <tr
+                key={category.id}
+                className={cn(
+                  idx % 2 === 0 ? "bg-white/60" : "bg-primary/5",
+                  "hover:bg-gradient-to-r hover:from-primary/10 hover:to-secondary/10 transition-colors group"
+                )}
+              >
+                {columns.map((col) => (
+                  <td
+                    key={col.key}
+                    className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 group-hover:text-primary font-medium border-b border-primary/10"
                   >
-                    <PencilIcon className="h-4 w-4" />
+                    {category[col.key]}
+                  </td>
+                ))}
+                <td className="px-6 py-4 whitespace-nowrap text-right border-b border-primary/10">
+                  <button className="inline-flex items-center px-3 py-1 rounded-lg bg-gradient-to-r from-primary to-secondary text-white font-semibold shadow-md hover:scale-105 transition-transform">
+                    Düzenle
                   </button>
-                  <button
-                    onClick={() => handleDeleteCategory(category)}
-                    className="text-red-600 hover:text-red-900"
-                  >
-                    <TrashIcon className="h-4 w-4" />
-                  </button>
-                </div>
-              )}
-            </div>
-            
-            <div className="mb-4">
-              <p className="text-sm text-gray-600">{category.description}</p>
-            </div>
-            
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <CubeIcon className="h-4 w-4 text-gray-400 mr-1" />
-                <span className="text-sm text-gray-500">
-                  {category.assetCount} demirbaş
-                </span>
-              </div>
-              <div className="text-xs text-gray-400">
-                {new Date(category.createdDate).toLocaleDateString('tr-TR')}
-              </div>
-            </div>
-          </div>
-        ))}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
 
       {categories.length === 0 && (
