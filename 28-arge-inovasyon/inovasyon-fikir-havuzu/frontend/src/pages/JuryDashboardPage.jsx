@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import DashboardLayout from '../layouts/DashboardLayout';
+import { createReport } from '../services/reportService';
+import { toast } from 'react-toastify';
 
 const JuryDashboardPage = () => {
   const { isAuthenticated, token, user } = useSelector((state) => state.auth);
@@ -9,6 +11,11 @@ const JuryDashboardPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [actionLoading, setActionLoading] = useState(null); // ID of the idea being processed
+  const [showReportModal, setShowReportModal] = useState(false);
+  const [reportIdeaId, setReportIdeaId] = useState(null);
+  const [reportTitle, setReportTitle] = useState('');
+  const [reportDescription, setReportDescription] = useState('');
+  const [reportLoading, setReportLoading] = useState(false);
 
   const isJury = user && user.role === 'Jury';
 
@@ -47,6 +54,35 @@ const JuryDashboardPage = () => {
       alert('İşlem başarısız!');
     }
     setActionLoading(null);
+  };
+
+  const openReportModal = (ideaId) => {
+    setReportIdeaId(ideaId);
+    setReportTitle('');
+    setReportDescription('');
+    setShowReportModal(true);
+  };
+
+  const closeReportModal = () => {
+    setShowReportModal(false);
+  };
+
+  const handleReportSubmit = async (e) => {
+    e.preventDefault();
+    setReportLoading(true);
+    try {
+      await createReport({
+        ideaId: reportIdeaId,
+        title: reportTitle,
+        description: reportDescription,
+        createdBy: user?.userName,
+      });
+      toast.success('Rapor başarıyla oluşturuldu!');
+      setShowReportModal(false);
+    } catch {
+      toast.error('Rapor oluşturulamadı!');
+    }
+    setReportLoading(false);
   };
 
   if (!isAuthenticated || !isJury) {
@@ -93,10 +129,69 @@ const JuryDashboardPage = () => {
                 >
                   {actionLoading === idea.id ? '...' : 'Reddet'}
                 </button>
+                <button
+                  onClick={() => openReportModal(idea.id)}
+                  className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+                >
+                  Rapor Oluştur
+                </button>
               </div>
             </div>
           ))}
         </div>
+        {/* Rapor Oluştur Modalı */}
+        {showReportModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-500/60">
+            <div className="relative bg-white rounded-xl shadow-xl w-full max-w-lg mx-auto p-8 animate-fade-in">
+              <button
+                className="absolute top-3 right-3 text-gray-400 hover:text-gray-700"
+                onClick={closeReportModal}
+                aria-label="Kapat"
+              >
+                &times;
+              </button>
+              <h3 className="text-xl font-bold text-blue-800 mb-6 text-center">Rapor Oluştur</h3>
+              <form onSubmit={handleReportSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium mb-1">Başlık</label>
+                  <input
+                    type="text"
+                    value={reportTitle}
+                    onChange={e => setReportTitle(e.target.value)}
+                    className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Açıklama</label>
+                  <textarea
+                    value={reportDescription}
+                    onChange={e => setReportDescription(e.target.value)}
+                    className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    rows={4}
+                    required
+                  />
+                </div>
+                <div className="flex gap-2 justify-end pt-2">
+                  <button
+                    type="button"
+                    className="px-4 py-2 rounded bg-gray-100 text-gray-700 font-semibold hover:bg-gray-200"
+                    onClick={closeReportModal}
+                  >
+                    İptal
+                  </button>
+                  <button
+                    type="submit"
+                    className="px-4 py-2 rounded bg-blue-600 text-white font-semibold hover:bg-blue-700"
+                    disabled={reportLoading}
+                  >
+                    {reportLoading ? 'Oluşturuluyor...' : 'Oluştur'}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
       </div>
     </DashboardLayout>
   );
