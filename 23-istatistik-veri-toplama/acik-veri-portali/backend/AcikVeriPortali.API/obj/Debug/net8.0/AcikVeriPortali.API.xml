@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AcikVeriPortali.API</name>
+    </assembly>
+    <members>
+        <member name="M:AcikVeriPortali.API.Controllers.DashboardController.GetDashboardData">
+            <summary>
+            Dashboard ana verilerini getirir
+            </summary>
+        </member>
+        <member name="M:AcikVeriPortali.API.Controllers.DashboardController.GetPopularDataSets(System.Int32)">
+            <summary>
+            Popüler veri setlerini getirir
+            </summary>
+        </member>
+        <member name="M:AcikVeriPortali.API.Controllers.DashboardController.GetCategoryStatistics">
+            <summary>
+            Kategori istatistiklerini getirir
+            </summary>
+        </member>
+        <member name="M:AcikVeriPortali.API.Controllers.DashboardController.GetUserEngagementMetrics">
+            <summary>
+            Kullanıcı etkileşim metriklerini getirir
+            </summary>
+        </member>
+        <member name="M:AcikVeriPortali.API.Controllers.DashboardController.GetPortalStatistics(System.Nullable{System.DateTime})">
+            <summary>
+            Portal istatistiklerini getirir
+            </summary>
+        </member>
+        <member name="M:AcikVeriPortali.API.Controllers.DashboardController.GetPortalStatisticsRange(System.DateTime,System.DateTime)">
+            <summary>
+            Belirli bir tarih aralığındaki portal istatistiklerini getirir
+            </summary>
+        </member>
+        <member name="M:AcikVeriPortali.API.Controllers.DashboardController.GetDataSetStatistics(System.Int32,System.Nullable{System.DateTime})">
+            <summary>
+            Veri seti istatistiklerini getirir
+            </summary>
+        </member>
+        <member name="M:AcikVeriPortali.API.Controllers.DashboardController.GetDataSetStatisticsRange(System.Int32,System.DateTime,System.DateTime)">
+            <summary>
+            Veri seti istatistiklerini tarih aralığında getirir
+            </summary>
+        </member>
+        <member name="M:AcikVeriPortali.API.Controllers.DashboardController.GetUserActivities(System.Int32,System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+            <summary>
+            Kullanıcı aktivitelerini getirir
+            </summary>
+        </member>
+        <member name="M:AcikVeriPortali.API.Controllers.DashboardController.GenerateDailyStatistics">
+            <summary>
+            Günlük istatistikleri manuel olarak oluşturur
+            </summary>
+        </member>
+        <member name="M:AcikVeriPortali.API.Controllers.DashboardController.GenerateDataSetStatistics(System.Int32)">
+            <summary>
+            Veri seti istatistiklerini manuel olarak oluşturur
+            </summary>
+        </member>
+        <member name="T:AcikVeriPortali.API.Migrations.init">
+            <inheritdoc />
+        </member>
+        <member name="M:AcikVeriPortali.API.Migrations.init.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:AcikVeriPortali.API.Migrations.init.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:AcikVeriPortali.API.Migrations.init.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

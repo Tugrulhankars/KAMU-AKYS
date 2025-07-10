@@ -1,57 +1,251 @@
-# acik veri portali
+# KAMU AKYS - Açık Veri Portalı
 
-Bu modül **istatistik veri toplama** kategorisi altında kamu kurumları için geliştirilecek açık kaynak **acik veri portali** projesidir.
+KAMU AKYS projesi kapsamında geliştirilen modern açık veri portalı. Kamu kurumları için şeffaflık ve veri erişilebilirliği sağlayan kapsamlı platform.
 
-## Proje Hakkında
+## 🚀 Özellikler
 
-Bu proje, kamu kurumlarının dijital dönüşüm sürecinde ihtiyaç duyulan acik veri portali çözümünü açık kaynak olarak sunmayı hedeflemektedir.
+### 🔐 Güvenlik ve Kimlik Doğrulama
+- JWT tabanlı kimlik doğrulama
+- Rol tabanlı yetkilendirme (Admin, User)
+- Güvenli API endpoint'leri
+- Şifre hashleme ve güvenlik önlemleri
 
-## Özellikler
+### 📊 Veri Yönetimi
+- Veri seti yükleme ve yönetimi
+- Kategori sistemi
+- Dosya formatı desteği (CSV, JSON, XML, Excel)
+- Metadata yönetimi
+- Versiyon kontrolü
 
-- [ ] Temel sistem mimarisi
-- [ ] Kullanıcı yönetimi ve yetkilendirme
-- [ ] RESTful API geliştirme
-- [ ] Güvenlik katmanları
-- [ ] Veri yönetimi ve saklama
-- [ ] Raporlama ve analitik
-- [ ] Mobil uygulama desteği
-- [ ] Entegrasyon API'leri
+### 🔍 Arama ve Filtreleme
+- Gelişmiş arama fonksiyonu
+- Kategori bazlı filtreleme
+- Tarih aralığı filtreleme
+- Format bazlı filtreleme
 
-## Teknoloji Yığını
+### 📈 Analitik ve Raporlama
+- İndirme istatistikleri
+- Kullanıcı aktivite takibi
+- Popüler veri setleri
+- Dashboard raporları
 
-- **Backend:** (Belirlenecek - Java/Spring, Python/Django, Node.js vb.)
-- **Frontend:** (Belirlenecek - React, Vue.js, Angular vb.)
-- **Veritabanı:** (Belirlenecek - PostgreSQL, MySQL, MongoDB vb.)
-- **Cache:** Redis
-- **Message Queue:** RabbitMQ / Apache Kafka
-- **Container:** Docker
-- **Orchestration:** Kubernetes
+### 🎨 Modern Kullanıcı Arayüzü
+- Responsive tasarım
+- Modern animasyonlar
+- Kullanıcı dostu arayüz
+- Dark/Light tema desteği
 
-## Kurulum
+## 🛠️ Teknolojiler
 
-```bash
-# Proje henüz geliştirme aşamasındadır
-# Kurulum adımları eklenecek
+### Backend
+- **.NET 8.0 Web API**
+- **Entity Framework Core**
+- **SQL Server**
+- **JWT Authentication**
+- **Swagger/OpenAPI**
+- **Docker**
+
+### Frontend
+- **React 18**
+- **Vite**
+- **Tailwind CSS**
+- **Framer Motion**
+- **React Router**
+- **Axios**
+
+## 📁 Proje Yapısı
+
+```
+acik-veri-portali/
+├── backend/
+│   ├── AcikVeriPortal.API/
+│   │   ├── Controllers/
+│   │   ├── Models/
+│   │   ├── Services/
+│   │   ├── Data/
+│   │   └── Middleware/
+│   ├── docker-compose.yml
+│   └── Dockerfile
+├── frontend/
+│   ├── acik-veri-portali/
+│   │   ├── src/
+│   │   │   ├── components/
+│   │   │   ├── pages/
+│   │   │   ├── contexts/
+│   │   │   ├── services/
+│   │   │   └── assets/
+│   │   ├── package.json
+│   │   └── vite.config.js
+│   └── README.md
+└── README.md
 ```
 
-## Kullanım
+## 🚀 Kurulum
 
-```bash
-# Kullanım örnekleri eklenecek
+### Backend Kurulumu
+
+1. **Gereksinimler**
+   - .NET 8.0 SDK
+   - SQL Server
+   - Docker (opsiyonel)
+
+2. **Veritabanı Kurulumu**
+   ```bash
+   cd backend
+   dotnet ef database update
+   ```
+
+3. **API Çalıştırma**
+   ```bash
+   cd backend/AcikVeriPortal.API
+   dotnet run
+   ```
+
+4. **Docker ile Çalıştırma**
+   ```bash
+   cd backend
+   docker-compose up -d
+   ```
+
+### Frontend Kurulumu
+
+1. **Bağımlılıkları Yükleme**
+   ```bash
+   cd frontend/acik-veri-portali
+   npm install
+   ```
+
+2. **Geliştirme Sunucusunu Başlatma**
+   ```bash
+   npm run dev
+   ```
+
+3. **Production Build**
+   ```bash
+   npm run build
+   ```
+
+## 🔧 Konfigürasyon
+
+### Backend Konfigürasyonu
+
+`appsettings.json` dosyasında aşağıdaki ayarları yapılandırın:
+
+```json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Database=AcikVeriPortal;Trusted_Connection=true;"
+  },
+  "JwtSettings": {
+    "SecretKey": "your-secret-key-here",
+    "Issuer": "KAMU-AKYS",
+    "Audience": "KAMU-AKYS-Users",
+    "ExpirationHours": 24
+  },
+  "FileStorage": {
+    "UploadPath": "uploads",
+    "MaxFileSize": 104857600
+  }
+}
 ```
 
-## API Dokümantasyonu
+### Frontend Konfigürasyonu
 
-API dokümantasyonu için [/docs](./docs) klasörüne bakınız.
+`.env` dosyasında API URL'ini yapılandırın:
 
-## Katkıda Bulunma
+```env
+VITE_API_URL=http://localhost:5000/api
+```
 
-Projeye katkıda bulunmak için lütfen [CONTRIBUTING.md](../CONTRIBUTING.md) dosyasını inceleyin.
+## 📊 API Endpoints
 
-## Lisans
+### Kimlik Doğrulama
+- `POST /api/auth/login` - Kullanıcı girişi
+- `POST /api/auth/register` - Kullanıcı kaydı
+- `POST /api/auth/refresh` - Token yenileme
 
-Bu proje açık kaynak lisansı altında yayınlanacaktır. Detaylar için [LICENSE](../LICENSE) dosyasına bakınız.
+### Veri Setleri
+- `GET /api/datasets` - Veri setlerini listele
+- `GET /api/datasets/{id}` - Veri seti detayı
+- `POST /api/datasets` - Yeni veri seti oluştur
+- `PUT /api/datasets/{id}` - Veri seti güncelle
+- `DELETE /api/datasets/{id}` - Veri seti sil
 
-## İletişim
+### Kategoriler
+- `GET /api/categories` - Kategorileri listele
+- `POST /api/categories` - Yeni kategori oluştur
 
-Proje hakkında sorularınız için issue açabilir veya proje ekibiyle iletişime geçebilirsiniz.
+### Kullanıcılar (Admin)
+- `GET /api/users` - Kullanıcıları listele
+- `PUT /api/users/{id}` - Kullanıcı güncelle
+- `DELETE /api/users/{id}` - Kullanıcı sil
+
+## 🎨 Kullanıcı Arayüzü
+
+### Ana Sayfalar
+- **Ana Sayfa** - Hero section ve özellikler
+- **Veri Setleri** - Tüm veri setlerini görüntüleme
+- **Kategoriler** - Kategori bazlı filtreleme
+- **Arama** - Gelişmiş arama sayfası
+
+### Kullanıcı Sayfaları
+- **Dashboard** - Kullanıcı paneli
+- **Profil** - Kullanıcı profil yönetimi
+- **Ayarlar** - Hesap ayarları
+
+### Admin Sayfaları
+- **Kullanıcı Yönetimi** - Kullanıcı işlemleri
+- **Sistem Ayarları** - Platform ayarları
+
+## 🔒 Güvenlik
+
+- JWT token tabanlı kimlik doğrulama
+- Role-based access control (RBAC)
+- API rate limiting
+- CORS yapılandırması
+- Input validation ve sanitization
+- SQL injection koruması
+
+## 📈 Performans
+
+- Entity Framework Core optimizasyonu
+- API response caching
+- Frontend lazy loading
+- Image optimization
+- Bundle splitting
+
+## 🧪 Test
+
+### Backend Testleri
+```bash
+cd backend
+dotnet test
+```
+
+### Frontend Testleri
+```bash
+cd frontend/acik-veri-portali
+npm test
+```
+
+## 📝 Lisans
+
+Bu proje KAMU AKYS projesi kapsamında geliştirilmiştir.
+
+## 🤝 Katkıda Bulunma
+
+1. Fork yapın
+2. Feature branch oluşturun (`git checkout -b feature/amazing-feature`)
+3. Commit yapın (`git commit -m 'Add amazing feature'`)
+4. Push yapın (`git push origin feature/amazing-feature`)
+5. Pull Request oluşturun
+
+## 📞 İletişim
+
+- **E-posta**: info@kamuakys.gov.tr
+- **Telefon**: +90 (212) 123 45 67
+- **Adres**: Ankara, Türkiye
+
+## 🙏 Teşekkürler
+
+KAMU AKYS projesi kapsamında geliştirilen bu açık veri portalı, kamu kurumlarının şeffaflık ve veri erişilebilirliği ihtiyaçlarını karşılamak üzere tasarlanmıştır.
